@@ -10,7 +10,7 @@ There are many ways to filter data in Cocoa. In this reading, we will teach you 
 
 The most common filtering mechanism in Cocoa with Objective-C is `NSPredicate`. With it we can do quite a bit and with ease. Here is the syntax for a basic `NSPredicate`.
 
-####### Example
+###### Example
 
 ```objc
 
@@ -40,7 +40,7 @@ This will result in the following output:
 
 2) An `NSPredicate` is applied to a collection (i.e. `NSArray`, `NSSet`).
 
-#######Example
+######Example
 
 ```objc
 
@@ -84,7 +84,7 @@ These are the basics of creating an `NSPredicate`. But in order to fully take ad
 ###Format Strings
 
 
-#####Variables
+####Variables
 
 Our format strings traditionally begin with the variable we want to filter our data, and generally end with the value / argument by which we wish to filter. In our examples thus far, that has been names of people and the letter "J". When the input is a simple `NSArray` of names, we can just use `self` to refer to the data as we did in our first example. However, when filtering an `NSDictionary` we can get more dynamic and specify an argument instead of `self.name` as we did above. For example:
 
@@ -100,7 +100,7 @@ Our format strings traditionally begin with the variable we want to filter our d
 
 With our same dataset, this would evaluate to just our `johnDict` and `joshDict` again.
 
-##### Basic Comparison
+#### Basic Comparison
 
 You can compare the left and right arguments in an NSPredicate with standard comparators: ==, >= (or =>), <= (or =<), <, >, != (or <>).
 
@@ -111,20 +111,20 @@ NSPredicate *betweenPredicate =
     [NSPredicate predicateWithFormat: @"@123 BETWEEN %@", @[@100, @150]];
 ```
 
-##### String Comparison
+#### String Comparison
 
-###### BEGINSWITH / ENDSWITH
+##### BEGINSWITH / ENDSWITH
 
-####### Example 
+###### Example 
 
 Well, every example we have given so far has used this comparator. So we won't waste your time!
 
 
-###### CONTAINS
+##### CONTAINS
 
 Ensures the left hand expression contains the right hand expression.
 
-####### Example:
+###### Example:
 ```objc
 
     NSDictionary *johnDict = @{@"name":@"John",@"age":@18};
@@ -163,7 +163,7 @@ The output of this code will result in the following output in our debug console
 )
 ```
 
-###### LIKE
+##### LIKE
 
 Ensures the left hand expression is "like" the right hand expression. 
 
@@ -171,7 +171,7 @@ Okay, so that is not particularly self-explanatory is it? The `LIKE` keyword ope
 
 
 
-#######Example
+######Example
 
 ```objc
 
@@ -213,11 +213,11 @@ The output of this code will result in the following output in our debug console
 )
 ```
 
-####### Modified String Operators
+##### Modified String Operators
 
 When using string comparators, you should expect your results to be case / diacritical mark (aka accent marks) sensitive. You can make your results case and diacritical mark insensitive by adding [c] and/or [d] after your comparator. 
 
-#######Example
+######Example
 
 ```objc
     NSDictionary *johnDict = @{@"name":@"John",@"age":@18};
@@ -255,7 +255,7 @@ Note: String matchers may be used together, like so:
 Predicates may be put together using the keywords `AND` (or `&&`), `OR` (or '||'), and `NOT` (or '!').
 
 
-#######Example
+######Example
 ```objc
     NSDictionary *johnDict = @{@"name":@"John",@"age":@18};
     NSDictionary *maryDict = @{@"name":@"Mary",@"age":@39};
