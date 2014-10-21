@@ -115,9 +115,9 @@ With our same dataset, this would evaluate to just our `johnDict` and `joshDict`
 
 #### Basic Comparison
 
-You can compare the left and right arguments in an NSPredicate with standard comparators: ==, >= (or =>), <= (or =<), <, >, != (or <>).
+You can compare the left and right arguments in an NSPredicate with standard comparators: `==`, `>=` (or `=>`), `<=` (or `=<`), `<`, `>`, `!=` (or `<>`).
 
-In addition, BETWEEN is also worth noting, as it allows you to compare one value to an array of values. For instance:
+In addition, `BETWEEN` is also worth noting, as it allows you to compare one value to an array of values. For instance:
 
 
 ######Example
@@ -129,14 +129,14 @@ NSPredicate *betweenPredicate =
 
 #### String Comparison
 
-##### BEGINSWITH / ENDSWITH
+##### `BEGINSWITH` / `ENDSWITH`
 
 ###### Example 
 
 Well, every example we have given so far has used this comparator. So we won't waste your time!
 
 
-##### CONTAINS
+##### `CONTAINS`
 
 Ensures the left hand expression contains the right hand expression.
 
@@ -186,17 +186,14 @@ The output of this code will result in the following output in our debug console
 )
 ```
 
-##### LIKE
+##### `LIKE`
 
 Ensures the left hand expression is "like" the right hand expression. 
 
-Okay, so that is not particularly self-explanatory is it? The `LIKE` keyword opens up a can of worms because it allows us to take advantage of regular expression matchers `*` and `?`. Here is an example, but if you don't understand this just yet, come back to it after you read up on regular expressions.
-
+Okay, so that is not particularly self-explanatory is it? The `LIKE` keyword allows us to take advantage of regular expression matchers `*` and `?`. Here is an example, but if you don't understand this just yet, feel free to come back to it after you read up on regular expressions.
 
 
 ######Example
-
-
 ```objc
 NSDictionary *johnDict = @{@"name":@"John",@"age":@18};
 NSDictionary *maryDict = @{@"name":@"Mary",@"age":@39};
@@ -245,7 +242,7 @@ The output of this code will result in the following output in our debug console
 
 ##### Modified String Operators
 
-When using string comparators, you should expect your results to be case / diacritical mark (aka accent marks) sensitive. You can make your results case and diacritical mark insensitive by adding [c] and/or [d] after your comparator. 
+When using string comparators, you should expect your results to be case / diacritical mark (aka accent marks) sensitive. You can make your results case and diacritical mark insensitive by adding `[c]` and/or `[d]` after your comparator. 
 
 ######Example
 
@@ -273,17 +270,17 @@ allNamesBeginningWithCaseInsensitiveF];
 NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
 
-In the above our NSPredicate would log all names that start with capital "F" or lowercase "f".
+If we ran the above, we would have just logged all names that start with capital "F" or lowercase "f" in our debug console.
 
-Here are the standard string matchers you will see / use regularly.
+So, to recap, the string modifiers are:
 
-[c] - case insensitive matching
+`[c]` - case insensitive matching
 
-[d] - diacritical mark insensitive matching (for letters with accent marks on them)
+`[d]` - diacritical mark insensitive matching (for letters with accent marks on them)
 
-Note: String matchers may be used together, like so:
+Or used together:
 
-[cd] - would match on strings that are both case and diacritical mark insensitive
+`[cd]` - would match on strings that are both case and diacritical mark insensitive
 
 ###### Compounds Predicates
 
