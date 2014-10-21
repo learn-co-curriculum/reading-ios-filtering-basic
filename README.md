@@ -10,8 +10,8 @@ There are many ways to filter data in Cocoa. In this reading, we will teach you 
 
 The most common filtering mechanism in Cocoa with Objective-C is `NSPredicate`. With it we can do quite a bit and with ease. Here is the syntax for a basic `NSPredicate`.
 
-###### Example
 
+###### Example
 ```objc
 NSArray *CharacterArray = 
 @[@"John",@"Mary",@"Margaret",@"Joshua",@"Biff",@"Ezekiel" ];
@@ -26,6 +26,8 @@ NSLog(@"%@",filteredCharacterArray);
 
 This will result in the following output:
 
+
+######Output
 ```
 2014-10-20 15:40:40.498 filteringTests[36619:1980980] (
     John,
@@ -33,14 +35,15 @@ This will result in the following output:
 )
 ```
 
+
 `NSPredicate` is one of the frameworks in Cocoa that has its own sort of 'sub language' of format strings to learn. We'll get into the specifics of this later, but for now, the most important things to take away from the above example are:
 
 1) An `NSPredicate` requires a kind of string that defines how the data will be filtered as its argument.
 
 2) An `NSPredicate` is applied to a collection (i.e. `NSArray`, `NSSet`).
 
-######Example
 
+######Example
 ```objc
 NSDictionary *johnDict = @{@"name":@"John",@"age":@18};
 NSDictionary *maryDict = @{@"name":@"Mary",@"age":@39};
@@ -60,10 +63,14 @@ NSArray *filteredCharacterArrayWithDictionaries =
 
 NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
+
+
 Here we have filtered on the same information, but filtering on an `NSArray` of `NSDictionary` objects.
 
 The output of this code will result in the following output in our debug console:
 
+
+######Output
 ```
 2014-10-20 15:55:42.752 filteringTests[36700:1987740] (
         {
@@ -88,6 +95,7 @@ These are the basics of creating an `NSPredicate`. But in order to fully take ad
 
 Our format strings traditionally begin with the variable we want to filter our data, and generally end with the value / argument by which we wish to filter. In our examples thus far, that has been names of people and the letter "J". When the input is a simple `NSArray` of names, we can just use `self` to refer to the data as we did in our first example. However, when filtering an `NSDictionary` we can get more dynamic and specify an argument instead of `self.name` as we did above. For example:
 
+
 ```objc
 NSString *fieldToFilterOn = @"name";
 
@@ -102,6 +110,7 @@ someAlphabeticFieldToFilterOn];
 NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
 
+
 With our same dataset, this would evaluate to just our `johnDict` and `joshDict` again.
 
 #### Basic Comparison
@@ -110,10 +119,13 @@ You can compare the left and right arguments in an NSPredicate with standard com
 
 In addition, BETWEEN is also worth noting, as it allows you to compare one value to an array of values. For instance:
 
+
+######Example
 ```objc
 NSPredicate *betweenPredicate =
     [NSPredicate predicateWithFormat: @"@123 BETWEEN %@", @[@100, @150]];
 ```
+
 
 #### String Comparison
 
@@ -127,6 +139,7 @@ Well, every example we have given so far has used this comparator. So we won't w
 ##### CONTAINS
 
 Ensures the left hand expression contains the right hand expression.
+
 
 ###### Example:
 ```objc
@@ -151,8 +164,11 @@ allNamesThatContainTheLetterA];
 NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
 
+
 The output of this code will result in the following output in our debug console, as all of the below names contain the letter "a".
 
+
+######Output
 ```
 2014-10-20 16:49:29.111 filteringTests[36700:1987740] (
         {
@@ -180,6 +196,7 @@ Okay, so that is not particularly self-explanatory is it? The `LIKE` keyword ope
 
 ######Example
 
+
 ```objc
 NSDictionary *johnDict = @{@"name":@"John",@"age":@18};
 NSDictionary *maryDict = @{@"name":@"Mary",@"age":@39};
@@ -204,8 +221,11 @@ allNamesThatStartWithALetterAndThenTheLettersARAndThenAnythingElse];
 NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
 
+
 The output of this code will result in the following output in our debug console, as all of the below names contain the letters "ar", may have letters after them, and have one character in front of them. Here is the result:
 
+
+######Output
 ```
 2014-10-20 16:49:29.111 filteringTests[36700:1987740] (
         {
