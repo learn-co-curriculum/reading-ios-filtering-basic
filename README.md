@@ -315,4 +315,4 @@ NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 This will log all names that start with uppercase "F", lowercase "F", and uppercase "J".
 
 ###Conclusion
-With this, you have all the basics of `NSPredicate`-based filtering at your fingertips. There are some more advanced moves you can make, but get these down first and then read up on Advanced Filtering. Filtering will not only help you filter standard `NSArray` and `NSDictionary` objects, but also data stored in Core Data, so remember to come back for a refresher when you get there!
+With this, you have all the basics of `NSPredicate`-based filtering at your fingertips. There are some more advanced moves you can make, but get these down first and then read up on Advanced Filtering. Filtering will not only help you filter `NSArray` objects, but also data retrieved from Core Data, so remember to come back for a refresher when you get there!
