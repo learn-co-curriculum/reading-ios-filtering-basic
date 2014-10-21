@@ -14,13 +14,13 @@ The most common filtering mechanism in Cocoa with Objective-C is `NSPredicate`. 
 
 ```objc
 
-NSArray *testArray = @[@"John",@"Mary",@"Margaret",@"Joshua",@"Biff",@"Ezekiel" ];
+NSArray *CharacterArray = @[@"John",@"Mary",@"Margaret",@"Joshua",@"Biff",@"Ezekiel" ];
     
 NSPredicate *allJNames = [NSPredicate predicateWithFormat:@"self BEGINSWITH %@",@"J"];
     
-NSArray *filteredTestArray = [testArray filteredArrayUsingPredicate:allJNames];
+NSArray *filteredCharacterArray = [CharacterArray filteredArrayUsingPredicate:allJNames];
     
-NSLog(@"%@",filteredTestArray);
+NSLog(@"%@",filteredCharacterArray);
 
 ```
 
@@ -55,9 +55,9 @@ This will result in the following output:
     
     NSPredicate *allJNames = [NSPredicate predicateWithFormat:@"self.name BEGINSWITH %@",@"J"];
 
-    NSArray *filteredTestArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allJNames];
+    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allJNames];
     
-    NSLog(@"%@",filteredTestArrayWithDictionaries);
+    NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 
 ```
 Here we have filtered on the same information, but filtering on an `NSArray` of `NSDictionary` objects.
@@ -93,9 +93,9 @@ Our format strings traditionally begin with the variable we want to filter our d
     
     NSPredicate *someAlphabeticFieldToFilterOn = [NSPredicate predicateWithFormat:@"self.%K BEGINSWITH %@",fieldToFilterOn,@"J"];
 
-    NSArray *filteredTestArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:someAlphabeticFieldToFilterOn];
+    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:someAlphabeticFieldToFilterOn];
     
-    NSLog(@"%@",filteredTestArrayWithDictionaries);
+    NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
 
 With our same dataset, this would evaluate to just our `johnDict` and `joshDict` again.
@@ -138,9 +138,9 @@ Ensures the left hand expression contains the right hand expression.
     
     NSPredicate *allJNames = [NSPredicate predicateWithFormat:@"self.name CONTAINS %@",@"a"];
 
-    NSArray *filteredTestArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allJNames];
+    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allJNames];
     
-    NSLog(@"%@",filteredTestArrayWithDictionaries);
+    NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 
 ```
 
@@ -188,9 +188,9 @@ NSArray *ourCharacters = @[johnDict, maryDict, margDict, fargDict, flargDict, jo
     
 NSPredicate *allNamesThatStartWithALetterAndThenTheLettersARAndThenAnythingElse = [NSPredicate predicateWithFormat:@"self.name LIKE %@",@"?ar*"];
 
-NSArray *filteredTestArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesThatStartWithALetterAndThenTheLettersARAndThenAnythingElse];
+NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesThatStartWithALetterAndThenTheLettersARAndThenAnythingElse];
     
-NSLog(@"%@",filteredTestArrayWithDictionaries);
+NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 
 ```
 
@@ -233,9 +233,9 @@ When using string comparators, you should expect your results to be case / diacr
     
     NSPredicate *allNamesBeginningWithCaseInsensitiveF = [NSPredicate predicateWithFormat:@"self.name BEGINSWITH[c] %@",@"F"];
 
-    NSArray *filteredTestArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesBeginningWithCaseInsensitiveF];
+    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesBeginningWithCaseInsensitiveF];
     
-    NSLog(@"%@",filteredTestArrayWithDictionaries);
+    NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
 
 In the above our NSPredicate would log all names that start with capital "F" or lowercase "f".
@@ -270,11 +270,12 @@ Predicates may be put together using the keywords `AND` (or `&&`), `OR` (or '||'
     
     NSPredicate *allNamesBeginningWithCaseInsensitiveF = [NSPredicate predicateWithFormat:@"self.name BEGINSWITH[c] %@ OR self.name BEGINSWITH %@",@"F",@"J"];
 
-    NSArray *filteredTestArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesBeginningWithCaseInsensitiveF];
+    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesBeginningWithCaseInsensitiveF];
     
-    NSLog(@"%@",filteredTestArrayWithDictionaries);
+    NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
 
 This will log all names that start with uppercase "F", lowercase "F", and uppercase "J".
 
+###Conclusion
 With this, you have all the basics of `NSPredicate`-based filtering at your fingertips. There are some more advanced moves you can make, but get these down first and then read up on Advanced Filtering. Filtering will not only help you filter standard `NSArray` and `NSDictionary` objects, but also data stored in Core Data, so remember to come back for a refresher when you get there!
