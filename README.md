@@ -14,9 +14,11 @@ The most common filtering mechanism in Cocoa with Objective-C is `NSPredicate`. 
 
 ```objc
 
-NSArray *CharacterArray = @[@"John",@"Mary",@"Margaret",@"Joshua",@"Biff",@"Ezekiel" ];
+NSArray *CharacterArray = 
+@[@"John",@"Mary",@"Margaret",@"Joshua",@"Biff",@"Ezekiel" ];
     
-NSPredicate *allJNames = [NSPredicate predicateWithFormat:@"self BEGINSWITH %@",@"J"];
+NSPredicate *allJNames = [NSPredicate predicateWithFormat:
+@"self BEGINSWITH %@",@"J"];
     
 NSArray *filteredCharacterArray = [CharacterArray filteredArrayUsingPredicate:allJNames];
     
@@ -51,11 +53,14 @@ This will result in the following output:
     NSDictionary *biffDict = @{@"name":@"Biff",@"age":@21};
     NSDictionary *ezekDict = @{@"name":@"Ezekiel",@"age":@400};
     
-    NSArray *ourCharacters = @[johnDict, maryDict, margDict, joshuaDict, biffDict, ezekDict];
+    NSArray *ourCharacters = @[johnDict, maryDict, margDict, 
+    joshuaDict, biffDict, ezekDict];
     
-    NSPredicate *allJNames = [NSPredicate predicateWithFormat:@"self.name BEGINSWITH %@",@"J"];
+    NSPredicate *allJNames = [NSPredicate predicateWithFormat:
+    @"self.name BEGINSWITH %@",@"J"];
 
-    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allJNames];
+    NSArray *filteredCharacterArrayWithDictionaries = 
+    [ourCharacters filteredArrayUsingPredicate:allJNames];
     
     NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 
@@ -91,9 +96,13 @@ Our format strings traditionally begin with the variable we want to filter our d
 ```objc
     NSString *fieldToFilterOn = @"name";
     
-    NSPredicate *someAlphabeticFieldToFilterOn = [NSPredicate predicateWithFormat:@"self.%K BEGINSWITH %@",fieldToFilterOn,@"J"];
+    NSPredicate *someAlphabeticFieldToFilterOn = 
+    [NSPredicate predicateWithFormat:@"self.%K 
+    BEGINSWITH %@",fieldToFilterOn,@"J"];
 
-    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:someAlphabeticFieldToFilterOn];
+    NSArray *filteredCharacterArrayWithDictionaries = 
+    [ourCharacters filteredArrayUsingPredicate:
+    someAlphabeticFieldToFilterOn];
     
     NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
@@ -134,11 +143,16 @@ Ensures the left hand expression contains the right hand expression.
     NSDictionary *biffDict = @{@"name":@"Biff",@"age":@21};
     NSDictionary *ezekDict = @{@"name":@"Ezekiel",@"age":@400};
     
-    NSArray *ourCharacters = @[johnDict, maryDict, margDict, joshuaDict, biffDict, ezekDict];
+    NSArray *ourCharacters = @[johnDict, maryDict, margDict, 
+    joshuaDict, biffDict, ezekDict];
     
-    NSPredicate *allJNames = [NSPredicate predicateWithFormat:@"self.name CONTAINS %@",@"a"];
+    NSPredicate *allNamesThatContainTheLetterA = 
+    [NSPredicate predicateWithFormat:@"self.name CONTAINS 
+    %@",@"a"];
 
-    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allJNames];
+    NSArray *filteredCharacterArrayWithDictionaries = 
+    [ourCharacters filteredArrayUsingPredicate:
+    allNamesThatContainTheLetterA];
     
     NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 
@@ -184,11 +198,16 @@ NSDictionary *joshuaDict = @{@"name":@"Joshua",@"age":@21};
 NSDictionary *biffDict = @{@"name":@"Biff",@"age":@21};
 NSDictionary *ezekDict = @{@"name":@"Ezekiel",@"age":@400};
     
-NSArray *ourCharacters = @[johnDict, maryDict, margDict, fargDict, flargDict, joshuaDict, biffDict, ezekDict];
+NSArray *ourCharacters = @[johnDict, maryDict, margDict, fargDict, 
+flargDict, joshuaDict, biffDict, ezekDict];
     
-NSPredicate *allNamesThatStartWithALetterAndThenTheLettersARAndThenAnythingElse = [NSPredicate predicateWithFormat:@"self.name LIKE %@",@"?ar*"];
+NSPredicate *
+allNamesThatStartWithALetterAndThenTheLettersARAndThenAnythingElse = 
+[NSPredicate predicateWithFormat:@"self.name LIKE %@",@"?ar*"];
 
-NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesThatStartWithALetterAndThenTheLettersARAndThenAnythingElse];
+NSArray *filteredCharacterArrayWithDictionaries = 
+[ourCharacters filteredArrayUsingPredicate:
+allNamesThatStartWithALetterAndThenTheLettersARAndThenAnythingElse];
     
 NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 
@@ -229,11 +248,16 @@ When using string comparators, you should expect your results to be case / diacr
     NSDictionary *biffDict = @{@"name":@"Biff",@"age":@21};
     NSDictionary *ezekDict = @{@"name":@"Ezekiel",@"age":@400};
     
-    NSArray *ourCharacters = @[johnDict, maryDict, margDict, fargDict, flargDict, joshuaDict, biffDict, ezekDict];
+    NSArray *ourCharacters = @[johnDict, maryDict, margDict, 
+    fargDict, flargDict, joshuaDict, biffDict, ezekDict];
     
-    NSPredicate *allNamesBeginningWithCaseInsensitiveF = [NSPredicate predicateWithFormat:@"self.name BEGINSWITH[c] %@",@"F"];
+    NSPredicate *allNamesBeginningWithCaseInsensitiveF = 
+    [NSPredicate predicateWithFormat:@"self.name 
+    BEGINSWITH[c] %@",@"F"];
 
-    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesBeginningWithCaseInsensitiveF];
+    NSArray *filteredCharacterArrayWithDictionaries 
+    = [ourCharacters filteredArrayUsingPredicate:
+    allNamesBeginningWithCaseInsensitiveF];
     
     NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
@@ -266,11 +290,16 @@ Predicates may be put together using the keywords `AND` (or `&&`), `OR` (or '||'
     NSDictionary *biffDict = @{@"name":@"Biff",@"age":@21};
     NSDictionary *ezekDict = @{@"name":@"Ezekiel",@"age":@400};
     
-    NSArray *ourCharacters = @[johnDict, maryDict, margDict, fargDict, flargDict, joshuaDict, biffDict, ezekDict];
+    NSArray *ourCharacters = @[johnDict, maryDict, margDict, 
+    fargDict, flargDict, joshuaDict, biffDict, ezekDict];
     
-    NSPredicate *allNamesBeginningWithCaseInsensitiveF = [NSPredicate predicateWithFormat:@"self.name BEGINSWITH[c] %@ OR self.name BEGINSWITH %@",@"F",@"J"];
+    NSPredicate *allNamesBeginningWithCaseInsensitiveF = 
+    [NSPredicate predicateWithFormat:@"self.name 
+    BEGINSWITH[c] %@ OR self.name BEGINSWITH %@",@"F",@"J"];
 
-    NSArray *filteredCharacterArrayWithDictionaries = [ourCharacters filteredArrayUsingPredicate:allNamesBeginningWithCaseInsensitiveF];
+    NSArray *filteredCharacterArrayWithDictionaries = 
+    [ourCharacters filteredArrayUsingPredicate:
+    allNamesBeginningWithCaseInsensitiveF];
     
     NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
