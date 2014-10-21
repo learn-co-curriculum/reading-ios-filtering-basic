@@ -219,7 +219,7 @@ NSLog(@"%@",filteredCharacterArrayWithDictionaries);
 ```
 
 
-The output of this code will result in the following output in our debug console, as all of the below names contain the letters "ar", may have letters after them, and have one character in front of them. Here is the result:
+The output of this code will result in the following output in our debug console, as all of the below names contain the letters "ar", may have letters after them, and have one character in front of them.
 
 
 ######Output
