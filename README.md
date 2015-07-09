@@ -234,7 +234,7 @@ Gandalf is 1.8 meters tall.
 ```
 ### String Comparators
 
-There is a set of comparators specifically for comparing strings. Typing them in either UPPERCASE or lowercase is valid predicate syntax. The simplest ones to employ are:
+There is a set of comparators specifically for comparing strings. The simplest ones to employ are:
 
 | Comparator  | Meaning |
 |:-----------:|:--------|
@@ -243,7 +243,9 @@ There is a set of comparators specifically for comparing strings. Typing them in
 | `CONTAINS`  | The key path's value must contain the object value.
 | `LIKE`      | The key path's value must match the object value, which can employ the use of wildcard characters `?` and `*`. |
 
-**Note:** *When predicating with string comparators, the object value (which would be a string) must either be wrapped inside single quotes* (`'``'`) *to distinguish its bounds from the bounds of the format string, or interpolated into the format string using a format specifier.*
+**Note:** *Typing string comparators in either UPPERCASE or lowercase is equally valid predicate syntax, however, you'll most often see them written in UPPERCASE because it helps to visually distinguish the comparators from their associated key path and object value in the format string. We suggest typing them in UPPERCASE yourself.*
+
+When predicating with string comparators, the object value (which would be a string) must either be wrapped inside single quotes (`'``'`) to distinguish its bounds from the bounds of the format string, or interpolated into the format string using a format specifier.
 
 #### Using Wildcards in the `LIKE` Comparator
 
@@ -255,7 +257,7 @@ When using `LIKE`, the object value can be written with `?`s ("question marks") 
 Let's use the `LIKE` comparator with some wildcards to look for any adventurers who spell their names with an "li":
 
 ```objc
-NSPredicate *liNamesPredicate = [NSPredicate predicateWithFormat:@"name like '*li*'"];
+NSPredicate *liNamesPredicate = [NSPredicate predicateWithFormat:@"name LIKE '*li*'"];
 NSArray *liNames = [middleEarthers filteredArrayUsingPredicate:liNamesPredicate];
 
 for (NSDictionary *character in liNames) {
@@ -273,7 +275,7 @@ Kíli spells his name with an 'li'.
 Did you notice that using the `*` wildcard permitted Fíli's and Kíli's name to pass through even though the "li" in their names are the last two characters? If we were to change that second `*` to a `?`, the predicate would expect a single character after the "li" instead of "any substring or nothing":
 
 ```objc
-NSPredicate *liNamesPredicate = [NSPredicate predicateWithFormat:@"name like '*li?'"];
+NSPredicate *liNamesPredicate = [NSPredicate predicateWithFormat:@"name LIKE '*li?'"];
 NSArray *liNames = [middleEarthers filteredArrayUsingPredicate:liNamesPredicate];
 
 for (NSDictionary *character in liNames) {
@@ -289,7 +291,7 @@ Dwalin spells his name with an 'li'.
 Conversely, if we instead replace the first `*` with `??`, the predicate will look for names with exactly two characters preceding the "li" and any substring following it:
 
 ```objc
-NSPredicate *liNamesPredicate = [NSPredicate predicateWithFormat:@"name like '??li*'"];
+NSPredicate *liNamesPredicate = [NSPredicate predicateWithFormat:@"name LIKE '??li*'"];
 NSArray *liNames = [middleEarthers filteredArrayUsingPredicate:liNamesPredicate];
 
 for (NSDictionary *character in liNames) {
@@ -315,14 +317,14 @@ Nai elyë hiruva. Namárië!*
 
 These string comparators can also be modified to be insensitive to case (`[c]`), insensitive to diacritical characters (`[d]`), or insensitive to both (`[cd]`). These options, written inside square brackets `[``]`, can be appended to the selected string comparator within the predicate format string in the manner of `CONTAINS[cd]`. 
 
-Case insensitivity treats uppercase letters equally to lowercase letters. Diacritical insensitivity treats letters with a diacritical mark as their base letter; [diacritical marks][diacritical_marks] are letters with special accents, such as the ones in the above excerpt from *Galadriel's Lament* in *The Lord of the Rings* which is in the fictional elven language *Quenya*.
+Case insensitivity treats uppercase letters equally to lowercase letters. Diacritical insensitivity treats letters with a diacritical mark as their base letter; [diacritical marks][diacritical_marks] are letters with special accents. As an example, the above excerpt from *Galadriel's Lament* in *The Lord of the Rings* written in the fictional elven language *Quenya* uses the diacritics `á` and `ë` in several places. Selecting the diacritic-insensitive option `[d]` will allow "Namárië" to pass as "Namarie".
 
 ##### Using String Comparator Modifiers
 
 Let's use a string comparator to search among our adventurers from Middle Earth who spell their name with an "o". We should use the `CONTAINS` comparator on the `name` key path with the object value `o`:
 
 ```objc
-NSPredicate *namesWithOPredicate = [NSPredicate predicateWithFormat:@"name contains 'o'"];
+NSPredicate *namesWithOPredicate = [NSPredicate predicateWithFormat:@"name CONTAINS 'o'"];
 NSArray *namesWithO = [middleEarthers filteredArrayUsingPredicate:namesWithOPredicate];
 
 for (NSDictionary *character in namesWithO) {
@@ -338,10 +340,10 @@ Bofur spells his name with an 'o'.
 Bombur spells his name with an 'o'.
 Dori spells his name with an 'o'.
 ```
-Hm, well we got the names of five our adventurers, but we're missing Dori's brother Ori. Let's add the case insensitive option `[c]` to our `contains` comparator:
+Hm, well we got the names of five our adventurers, but we're missing Dori's brother Ori. Let's add the case insensitive option `[c]` to our `CONTAINS` comparator:
 
 ```objc
-NSPredicate *namesWithOPredicate = [NSPredicate predicateWithFormat:@"name contains[c] 'o'"];
+NSPredicate *namesWithOPredicate = [NSPredicate predicateWithFormat:@"name CONTAINS[c] 'o'"];
 NSArray *namesWithO = [middleEarthers filteredArrayUsingPredicate:namesWithOPredicate];
 
 for (NSDictionary *character in namesWithO) {
@@ -358,10 +360,10 @@ Bombur spells his name with an 'o'.
 Dori spells his name with an 'o'.
 Ori spells his name with an 'o'.
 ```
-Ori's name was included in this new list! You may have noticed, however, that the brothers Óin and Glóin spell their names with a diacritical mark (as do Fíli and Kíli). That's why they're not coming up in the current search. Let's add the diacritical insensitive option `[d]` to our `contains` comparator:
+Ori's name was included in this new list! You may have noticed, however, that the brothers Óin and Glóin spell their names with a diacritical mark (as do Fíli and Kíli). That's why they're not coming up in the current search. Let's add the diacritical insensitive option `[d]` to our `CONTAINS` comparator:
 
 ```objc
-NSPredicate *namesWithOPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] 'o'"];
+NSPredicate *namesWithOPredicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] 'o'"];
 NSArray *namesWithO = [middleEarthers filteredArrayUsingPredicate:namesWithOPredicate];
 
 for (NSDictionary *character in namesWithO) {
