@@ -24,7 +24,7 @@ To seek the pale enchanted gold.*
 
 Anytime that we begin interacting with a large set of data, filtering out the relevant pieces of information becomes increasingly important. Imagine the real-world case of needing to sift through thousands of contacts to find only those with a specific zip code or telephone area code. Constructing a filter is the typical way to get the computer to do the sifting for you. In fact, this is how "search" bars typically work.
 
-In this reading, we'll be working with a data set (an array of dictionaries) containing information (name, age, and height) on each of the fourteen adventuring heroes from J.R.R. Tolkien's *The Hobbit*. This set of sample data is sufficiently large to meaningfully apply a few different filters, and should be inferred as being "in scope" for all of the examples throughout this reading:
+In this reading, we'll be working with a nested data structure (an array with 14 dictionaries) containing information (name, age, and height) on each of the fourteen adventuring heroes from J.R.R. Tolkien's *The Hobbit*. This set of sample data is sufficiently large to meaningfully apply a few different filters, and should be inferred as being "in scope" for all of the examples throughout this reading:
 
 ```objc
 NSArray *middleEarthers = @[ @{ @"name"   : @"Bilbo"  ,
@@ -160,6 +160,8 @@ arranged in the manner of: `@"%K comparator %@", keyPath, objectValue`. Both the
 
 The **key path** contains instructions for accessing the value to compare. When accessing a dictionary like we have in the examples here, this is the name of the appropriate key.
 
+**Note:** *The word* `self` *can be submitted to the keypath when filtering arrays or sets of basic objects such as* `NSString` *and* `NSNumber` *variables;* `self` *filters objects based upon their entirety rather than by a value-for-key or value-of-property basis.*
+
 The **comparator** is the kind of comparison we want our filter to make. There is rather extensive list of valid comparators, a few of which we'll cover in this reading. In the example above, it is the mathematical comparator `>` ("greater than").
 
 The **object value** is the desired search criteria we are making a comparison against. This can either be hardcoded into the format string before compiling, or it can be interpolated into the format string programmatically using a format specifier.
@@ -251,8 +253,8 @@ When predicating with string comparators, the object value (which would be a str
 
 When using `LIKE`, the object value can be written with `?`s ("question marks") and `*`s ("stars"). These "wildcard" characters allow you to tell the predicate to permit either:
 
-  * `?`: any single character in the held place, or 
-  * `*`: any substring of any length (including zero).
+  * `?`: any **single** character in the held place, or 
+  * `*`: any substring of **any length** (including zero).
 
 Let's use the `LIKE` comparator with some wildcards to look for any adventurers who spell their names with an "li":
 
