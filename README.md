@@ -82,7 +82,7 @@ It's likely that you've already used loops and conditionals to manually construc
 Let's write a filter using a loop and a conditional to find the oldest (and wisest) adventurers in the party:
 
 ```objc
-NSMutableArray *elders = [ @[] mutableCopy ];
+NSMutableArray *elders = [[NSMutableArray alloc] init];
 
 for (NSDictionary *character in middleEarthers) {
     if ([character[@"age"] integerValue] > 155 ) {
