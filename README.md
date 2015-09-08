@@ -111,7 +111,7 @@ But that's a lot of code to write that isn't very readable; it also isn't portab
 
 ![](https://curriculum-content.s3.amazonaws.com/ios/reading-ios-filtering-basic/dinnerMusic.gif)
 
-The class' name is derived from the field of "[predicate logic][predicate_logic]", though the strict definition of that phrase is somewhat ambiguous. Using `NSPredicate` instead of a loop allows us to not only accomplish the same filter in two lines of code every time, but it also allows us to access the same filter parameters from elsewhere in our code by passing around the `NSPredicate` object that we created (this is most commonly accomplished through using properties which we'll discuss in the next topic).
+The class's name is derived from the field of "[predicate logic][predicate_logic]", though the strict definition of that phrase is somewhat ambiguous. Using `NSPredicate` instead of a loop allows us to not only accomplish the same filter in two lines of code every time, but it also allows us to access the same filter parameters from elsewhere in our code by passing around the `NSPredicate` object that we created (this is most commonly accomplished through using properties which we'll discuss in the next topic).
 
 Let's rewrite our filter from above using an `NSPredicate`:
 
@@ -160,7 +160,7 @@ arranged in the manner of: `@"%K comparator %@", keyPath, objectValue`. Both the
 
 The **key path** contains instructions for accessing the value to compare. When accessing a dictionary like we have in the examples here, this is the name of the appropriate key.
 
-**Note:** *The word* `self` *can be submitted to the keypath when filtering arrays or sets of basic objects such as* `NSString` *and* `NSNumber` *variables;* `self` *filters objects based upon their entirety rather than by a value-for-key or value-of-property basis.*
+**Note:** *The word* `self` *can be submitted to the key path when filtering arrays or sets of basic objects such as* `NSString` *and* `NSNumber` *variables;* `self` *filters objects based upon their entirety rather than by a value-for-key or value-of-property basis.*
 
 The **comparator** is the kind of comparison we want our filter to make. There is rather extensive list of valid comparators, a few of which we'll cover in this reading. In the example above, it is the mathematical comparator `>` ("greater than").
 
