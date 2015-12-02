@@ -441,3 +441,5 @@ Keep your feet out there!
 [predicate_logic]: https://en.wikipedia.org/wiki/Predicate_logic
 [predicate_guide]: https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html
 [diacritical_marks]: https://en.wikipedia.org/wiki/English_terms_with_diacritical_marks
+
+<a href='https://learn.co/lessons/reading-ios-filtering-basic' data-visibility='hidden'>View this lesson on Learn.co</a>
