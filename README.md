@@ -442,4 +442,4 @@ Keep your feet out there!
 [predicate_guide]: https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html
 [diacritical_marks]: https://en.wikipedia.org/wiki/English_terms_with_diacritical_marks
 
-<a href='https://learn.co/lessons/reading-ios-filtering-basic' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/reading-ios-filtering-basic' title='Introduction To Filtering (NSPredicate)'>Introduction To Filtering (NSPredicate)</a> on Learn.co and start learning to code for free.</p>
